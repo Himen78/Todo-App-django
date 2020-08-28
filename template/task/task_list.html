@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    tasks
+{% endblock %}
+
+{% block content %}
+    <div>
+        <form class="" id="createTask" method="post" data-url="{% url 'task-list-url' %}">
+            {% csrf_token %}
+            {% for field in form %}
+            {{ field }}
+            {% endfor %}
+
+            <button type="button" id="createButton">Create</button>
+        </form>
+    </div>
+    <div id="taskList">
+        {% for task in tasks %}
+            <div id="taskcard" data-id="{{ task.id }}">
+            {{task.title}}<button type="button"  data-id="{{ task.id }}">Close Task</button>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
